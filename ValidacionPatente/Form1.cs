@@ -15,6 +15,8 @@ namespace ValidacionPatente
         public Form1()
         {
             InitializeComponent();
+            // Asociar el evento KeyPress al TextBox
+            textBox1.KeyPress += new KeyPressEventHandler(textBox1_KeyPress);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -37,20 +39,14 @@ namespace ValidacionPatente
                 MessageBox.Show("Formato de patente inválido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        //Para permitir solo letras y numeros en el textbox:
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Para permitir solo letras y números
             if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
             {
                 MessageBox.Show("Solo se permiten letras y números.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 e.Handled = true;
             }
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-           
         }
     }
 }
